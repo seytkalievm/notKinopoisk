@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FintechJunior</string>
+    <string name="favourite">Избранное</string>
+    <string name="popular">Популярные</string>
 </resources>

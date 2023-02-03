@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/popularFilmsFragment"
+        android:title="@string/popular"
+        android:icon="@drawable/ic_baseline_auto_graph_24"/>
+
+    <item
+        android:id="@+id/favouriteFilmsFragment"
+        android:title="@string/favourite"
+        android:icon="@drawable/ic_round_star_outline_24"/>
+
+</menu>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/popularFilmsFragment">
+
+    <fragment
+        android:id="@+id/popularFilmsFragment"
+        android:name="com.seytkalievm.tinkoffjunlab.presentation.popular.PopularFilmsFragment"
+        android:label="fragment_popular_films"
+        tools:layout="@layout/fragment_popular_films" />
+    <fragment
+        android:id="@+id/favouriteFilmsFragment"
+        android:name="com.seytkalievm.tinkoffjunlab.presentation.favourites.FavouriteFilmsFragment"
+        android:label="fragment_favourite_films"
+        tools:layout="@layout/fragment_favourite_films" />
+</navigation>
