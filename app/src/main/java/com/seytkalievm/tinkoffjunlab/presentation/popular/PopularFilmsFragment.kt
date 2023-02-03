@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentPopularFilmsBinding
+import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewAdapter
+import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewItemDiffCalculator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,5 +26,15 @@ class PopularFilmsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.filmsRv.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = FilmPreviewAdapter(FilmPreviewItemDiffCalculator())
+        binding.filmsRv.adapter = adapter
 
+        viewModel.films.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+    }
 }

@@ -2,4 +2,11 @@
     <string name="app_name">FintechJunior</string>
     <string name="favourite">Избранное</string>
     <string name="popular">Популярные</string>
+    <string name="name_ru">Название</string>
+    <string name="year">2015</string>
+    <string name="countries">Испания, Аргентина</string>
+    <string name="bullet">\u2022</string>
+    <string name="film_poster">film poster</string>
+    <string name="genres">Фэнтези, Приключения</string>
+    <string name="is_favourite">is favourite</string>
 </resources>
