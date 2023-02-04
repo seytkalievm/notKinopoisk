@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentPopularFilmsBinding
-import com.seytkalievm.tinkoffjunlab.presentation.MainActivity
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewAdapter
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewItemDiffCalculator
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,16 +30,24 @@ class PopularFilmsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.filmsRv.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = FilmPreviewAdapter(FilmPreviewItemDiffCalculator()){
-            val action = PopularFilmsFragmentDirections
-                .actionPopularFilmsFragmentToFilmDetailsFragment(it)
-            findNavController().navigate(action)
-        }
+        val adapter = FilmPreviewAdapter(
+            FilmPreviewItemDiffCalculator(),
+            { showDetails(it) }, {addToFavourites(it)})
         binding.filmsRv.adapter = adapter
 
         viewModel.films.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+    }
 
+    private fun showDetails(id: Int) {
+        val action = PopularFilmsFragmentDirections
+            .actionPopularFilmsFragmentToFilmDetailsFragment(id)
+        action.local = false
+        findNavController().navigate(action)
+    }
+
+    private fun addToFavourites(id: Int) {
+        viewModel.addToFavourites(id)
     }
 }

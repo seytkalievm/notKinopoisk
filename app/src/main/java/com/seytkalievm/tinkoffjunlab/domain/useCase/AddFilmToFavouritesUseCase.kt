@@ -9,7 +9,7 @@ class AddFilmToFavouritesUseCase @Inject constructor(
     private val repo: LocalFilmsRepository
     ){
     suspend operator fun invoke(id: Int) {
-        val film = getFilmDetailsUseCase(id)
+        val film = getFilmDetailsUseCase(id, false)
         try {
             repo.insertFilm(film)
         } catch (_: SQLiteConstraintException){}

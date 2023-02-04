@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.seytkalievm.tinkoffjunlab.R
 import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentFilmDetailsBinding
-import com.seytkalievm.tinkoffjunlab.presentation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +32,7 @@ class FilmDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = args.id
+        val local = args.local
         val detailsLayout = binding.filmDetails
         detailsLayout.visibility = View.GONE
         binding.backButton.setOnClickListener {
@@ -42,7 +42,7 @@ class FilmDetailsFragment : Fragment() {
         val shimmerLayout = binding.shimmerLayout
         shimmerLayout.startShimmer()
 
-        viewModel.getFilmDetails(id)
+        viewModel.getFilmDetails(id, local)
 
         viewModel.filmDetails.observe(viewLifecycleOwner) {
             shimmerLayout.stopShimmer()

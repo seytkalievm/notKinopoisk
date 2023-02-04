@@ -20,10 +20,10 @@ class FilmDetailsViewModel @Inject constructor(
     private val _filmDetails = MutableLiveData<FilmDetails>()
     val filmDetails: LiveData<FilmDetails> get() = _filmDetails
 
-    fun getFilmDetails(id: Int) {
+    fun getFilmDetails(id: Int, local: Boolean) {
         viewModelScope.launch (Dispatchers.IO) {
             delay(500)
-            _filmDetails.postValue(getFilmDetailsUseCase.invoke(id))
+            _filmDetails.postValue(getFilmDetailsUseCase.invoke(id, local))
         }
     }
 }

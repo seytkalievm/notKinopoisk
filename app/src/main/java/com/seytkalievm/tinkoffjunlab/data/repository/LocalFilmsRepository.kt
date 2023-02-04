@@ -22,4 +22,8 @@ class LocalFilmsRepository @Inject constructor(private val dao: FilmsDao) {
             list.map { it.toPreview() }
         }
     }
+
+    suspend fun getFilmDetails(id: Int): FilmDetails {
+        return dao.getFilmDetails(id)
+    }
 }

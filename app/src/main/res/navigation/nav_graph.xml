@@ -22,7 +22,11 @@
         android:id="@+id/favouriteFilmsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.favourites.FavouriteFilmsFragment"
         android:label="Избранное"
-        tools:layout="@layout/fragment_favourite_films" />
+        tools:layout="@layout/fragment_favourite_films" >
+        <action
+            android:id="@+id/action_favouriteFilmsFragment_to_filmDetailsFragment"
+            app:destination="@id/filmDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filmDetailsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.details.FilmDetailsFragment"
@@ -30,5 +34,9 @@
         <argument
             android:name="id"
             app:argType="integer"/>
+        <argument
+            android:name="local"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 </navigation>
