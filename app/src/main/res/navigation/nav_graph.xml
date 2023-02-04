@@ -9,10 +9,27 @@
         android:id="@+id/popularFilmsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.popular.PopularFilmsFragment"
         android:label="fragment_popular_films"
-        tools:layout="@layout/fragment_popular_films" />
+        tools:layout="@layout/fragment_popular_films" >
+        <action
+            android:id="@+id/action_popularFilmsFragment_to_filmDetailsFragment"
+            app:destination="@id/filmDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
     <fragment
         android:id="@+id/favouriteFilmsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.favourites.FavouriteFilmsFragment"
         android:label="fragment_favourite_films"
         tools:layout="@layout/fragment_favourite_films" />
+    <fragment
+        android:id="@+id/filmDetailsFragment"
+        android:name="com.seytkalievm.tinkoffjunlab.presentation.details.FilmDetailsFragment"
+        android:label="fragment_film_details"
+        tools:layout="@layout/fragment_film_details" >
+        <argument
+            android:name="id"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

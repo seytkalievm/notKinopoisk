@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -81,5 +82,7 @@ dependencies {
 
     // Ok http
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 }

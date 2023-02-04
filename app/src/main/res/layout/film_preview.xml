@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:text="@string/year"
+        android:text="@string/year_example"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintStart_toEndOf="@+id/poster_preview_iv"
         app:layout_constraintTop_toBottomOf="@+id/name_ru_tv" />
@@ -51,7 +51,7 @@
         android:layout_marginStart="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="@string/genres"
+        android:text="@string/genres_example"
         app:layout_constraintBottom_toBottomOf="@+id/poster_preview_iv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/poster_preview_iv" />
