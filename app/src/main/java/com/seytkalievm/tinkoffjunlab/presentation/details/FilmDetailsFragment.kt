@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.seytkalievm.tinkoffjunlab.R
 import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentFilmDetailsBinding
+import com.seytkalievm.tinkoffjunlab.presentation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +35,9 @@ class FilmDetailsFragment : Fragment() {
         val id = args.id
         val detailsLayout = binding.filmDetails
         detailsLayout.visibility = View.GONE
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val shimmerLayout = binding.shimmerLayout
         shimmerLayout.startShimmer()

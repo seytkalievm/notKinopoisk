@@ -10,7 +10,8 @@
     <string name="genres_example">Фэнтези, Приключения</string>
     <string name="is_favourite">is favourite</string>
     <string name="description">description</string>
-    <string name="genres">Жанры: </string>
-    <string name="year">Год: </string>
-    <string name="countries">Страны: </string>
+    <string name="genres">Жанры:\u0020</string>
+    <string name="year">Год:\u0020</string>
+    <string name="countries">Страны:\u0020</string>
+    <string name="back_button">back button</string>
 </resources>

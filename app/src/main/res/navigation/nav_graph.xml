@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/popularFilmsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.popular.PopularFilmsFragment"
-        android:label="fragment_popular_films"
+        android:label="Популярное"
         tools:layout="@layout/fragment_popular_films" >
         <action
             android:id="@+id/action_popularFilmsFragment_to_filmDetailsFragment"
@@ -21,12 +21,11 @@
     <fragment
         android:id="@+id/favouriteFilmsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.favourites.FavouriteFilmsFragment"
-        android:label="fragment_favourite_films"
+        android:label="Избранное"
         tools:layout="@layout/fragment_favourite_films" />
     <fragment
         android:id="@+id/filmDetailsFragment"
         android:name="com.seytkalievm.tinkoffjunlab.presentation.details.FilmDetailsFragment"
-        android:label="fragment_film_details"
         tools:layout="@layout/fragment_film_details" >
         <argument
             android:name="id"

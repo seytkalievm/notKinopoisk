@@ -33,5 +33,18 @@
     </LinearLayout>
 
 
+    <ImageButton
+        android:id="@+id/back_button"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/circle_background"
+        android:contentDescription="@string/back_button"
+        android:src="@drawable/round_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

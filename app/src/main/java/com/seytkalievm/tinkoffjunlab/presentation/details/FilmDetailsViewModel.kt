@@ -22,7 +22,7 @@ class FilmDetailsViewModel @Inject constructor(
 
     fun getFilmDetails(id: Int) {
         viewModelScope.launch (Dispatchers.IO) {
-            delay(2000)
+            delay(500)
             _filmDetails.postValue(getFilmDetailsUseCase.invoke(id))
         }
     }

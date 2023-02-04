@@ -7,7 +7,8 @@ import com.seytkalievm.tinkoffjunlab.data.model.FilmPreview
 import com.seytkalievm.tinkoffjunlab.databinding.FilmPreviewBinding
 
 class FilmPreviewAdapter constructor(
-    filmPreviewItemDiffCalculator: FilmPreviewItemDiffCalculator
+    filmPreviewItemDiffCalculator: FilmPreviewItemDiffCalculator,
+    private val listener: (Int) -> Unit
 )
     : ListAdapter<FilmPreview, FilmPreviewViewHolder>(filmPreviewItemDiffCalculator) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmPreviewViewHolder {
@@ -16,5 +17,6 @@ class FilmPreviewAdapter constructor(
 
     override fun onBindViewHolder(holder: FilmPreviewViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener{listener(getItem(position).filmId)}
     }
 }
