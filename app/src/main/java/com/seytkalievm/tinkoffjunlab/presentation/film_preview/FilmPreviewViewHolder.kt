@@ -1,5 +1,6 @@
 package com.seytkalievm.tinkoffjunlab.presentation.film_preview
 
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.seytkalievm.tinkoffjunlab.R
@@ -15,6 +16,7 @@ class FilmPreviewViewHolder(private val binding: FilmPreviewBinding)
             nameRuTv.text = item.nameRu
             yearTv.text = item.year
             genresTv.text = item.genres.joinToString(", ")
+            isFavouriteIv.isVisible = item.isFavourite
             item.posterUrlPreview?.let { url ->
                 Glide.with(binding.root.context)
                     .load(url)

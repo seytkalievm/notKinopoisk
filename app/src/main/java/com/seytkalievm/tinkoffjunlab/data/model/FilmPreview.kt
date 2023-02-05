@@ -12,5 +12,6 @@ data class FilmPreview(
     val rating: String,
     val ratingChange: Any,
     val ratingVoteCount: Int,
-    val year: String
+    val year: String,
+    var isFavourite: Boolean = false
 )

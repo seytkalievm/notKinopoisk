@@ -12,7 +12,10 @@ import com.seytkalievm.tinkoffjunlab.data.paging.KinopoiskPagingSource
 import javax.inject.Inject
 
 
-class RemoteFilmsRepository @Inject constructor(private val api: KinopoiskApi) {
+class RemoteFilmsRepository @Inject constructor(
+    private val api: KinopoiskApi,
+    private val pagingSource: KinopoiskPagingSource,
+    ) {
     suspend fun getFilmDetails(id: Int): FilmDetails {
         return api.getFilmDetails(id)
     }
@@ -23,7 +26,7 @@ class RemoteFilmsRepository @Inject constructor(private val api: KinopoiskApi) {
                 maxSize = 200,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { KinopoiskPagingSource(api) }
+            pagingSourceFactory = { pagingSource }
         ).liveData
     }
 }

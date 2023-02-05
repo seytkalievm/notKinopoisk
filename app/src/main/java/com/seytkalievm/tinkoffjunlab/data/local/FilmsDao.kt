@@ -22,4 +22,6 @@ interface FilmsDao {
     @Query("SELECT * FROM favourite_films WHERE id = :id")
     suspend fun getFilmDetails(id: Int): FilmDetails
 
+    @Query("SELECT EXISTS(SELECT * FROM favourite_films WHERE id =:id)")
+    suspend fun hasItem(id: Int): Boolean
 }

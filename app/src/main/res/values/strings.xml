@@ -19,4 +19,5 @@
     <string name="connection_error">Ошибка соединения</string>
     <string name="check_network_connection">Проверьте подключение к сети</string>
     <string name="search">Поиск</string>
+    <string name="no_favourite_films">У вас нет любимых фильмов</string>
 </resources>

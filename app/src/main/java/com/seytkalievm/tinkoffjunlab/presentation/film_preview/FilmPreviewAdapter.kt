@@ -24,8 +24,8 @@ class FilmPreviewAdapter constructor(
         holder.bind(item)
         holder.itemView.setOnClickListener { onClickListener(item.filmId) }
         holder.itemView.setOnLongClickListener {
-            Log.i(TAG, "onBindViewHolder: LongClick")
-            Log.i(TAG, "onBindViewHolder: ${item.filmId}")
+            item.isFavourite = !item.isFavourite
+            notifyItemChanged(position)
             onLongClickListener(item.filmId)
             true
         }

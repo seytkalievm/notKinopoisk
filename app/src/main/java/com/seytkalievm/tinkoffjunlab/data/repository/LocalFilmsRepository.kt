@@ -31,7 +31,9 @@ class LocalFilmsRepository @Inject constructor(private val dao: FilmsDao) {
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { dao.getAllFilms() }
-        ).flow.map {pagingData-> pagingData.map { it.toPreview() } }.asLiveData()
+        ).flow.map {pagingData-> pagingData.map {
+            it.toPreview().also { preview -> preview.isFavourite = true }
+        } }.asLiveData()
     }
 
 }
