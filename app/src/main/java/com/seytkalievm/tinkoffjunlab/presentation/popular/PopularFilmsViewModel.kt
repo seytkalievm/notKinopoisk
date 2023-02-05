@@ -1,34 +1,24 @@
 package com.seytkalievm.tinkoffjunlab.presentation.popular
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.seytkalievm.tinkoffjunlab.data.model.FilmPreview
+import android.util.Log
+import androidx.lifecycle.*
+import androidx.paging.cachedIn
+import androidx.paging.filter
+import com.seytkalievm.tinkoffjunlab.data.repository.MainRepository
 import com.seytkalievm.tinkoffjunlab.domain.useCase.AddFilmToFavouritesUseCase
-import com.seytkalievm.tinkoffjunlab.domain.useCase.GetTop100FilmsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "PopularFilmsViewModel"
 @HiltViewModel
 class PopularFilmsViewModel @Inject constructor(
-    private val getTop100FilmsUseCase: GetTop100FilmsUseCase,
-    private val addFilmToFavouritesUseCase: AddFilmToFavouritesUseCase
+    private val addFilmToFavouritesUseCase: AddFilmToFavouritesUseCase,
+    private val mainRepository: MainRepository,
 ): ViewModel() {
-    private val _films = MutableLiveData<List<FilmPreview>>()
-    val films: LiveData<List<FilmPreview>> get() = _films
 
-    init {
-        getFilms()
-    }
-
-    private fun getFilms() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _films.postValue(getTop100FilmsUseCase.invoke(1))
-        }
-    }
+    val pagedFilms = mainRepository.getPopularFilms().cachedIn(viewModelScope)
     fun addToFavourites(id: Int){
         viewModelScope.launch(Dispatchers.IO) {
             addFilmToFavouritesUseCase(id)

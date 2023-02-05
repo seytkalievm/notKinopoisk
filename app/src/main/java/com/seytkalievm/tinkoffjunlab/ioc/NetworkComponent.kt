@@ -2,7 +2,7 @@ package com.seytkalievm.tinkoffjunlab.ioc
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.seytkalievm.tinkoffjunlab.common.BASE_URL
-import com.seytkalievm.tinkoffjunlab.data.datasource.KinopoiskApi
+import com.seytkalievm.tinkoffjunlab.data.remote.KinopoiskApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

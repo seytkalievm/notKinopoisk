@@ -1,8 +1,8 @@
 package com.seytkalievm.tinkoffjunlab.ioc
 
 import android.content.Context
-import com.seytkalievm.tinkoffjunlab.data.datasource.FilmsDao
-import com.seytkalievm.tinkoffjunlab.data.model.FavouriteFilmsDatabase
+import com.seytkalievm.tinkoffjunlab.data.local.FilmsDao
+import com.seytkalievm.tinkoffjunlab.data.local.FavouriteFilmsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

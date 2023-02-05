@@ -14,4 +14,9 @@
     <string name="year">Год:\u0020</string>
     <string name="countries">Страны:\u0020</string>
     <string name="back_button">back button</string>
+    <string name="try_again">Повторить</string>
+    <string name="cannot_load_result">Ошибка загрузки</string>
+    <string name="connection_error">Ошибка соединения</string>
+    <string name="check_network_connection">Проверьте подключение к сети</string>
+    <string name="search">Поиск</string>
 </resources>

@@ -1,11 +1,12 @@
-package com.seytkalievm.tinkoffjunlab.data.model
+package com.seytkalievm.tinkoffjunlab.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.seytkalievm.tinkoffjunlab.data.datasource.FilmsDao
+import com.seytkalievm.tinkoffjunlab.data.model.Converter
+import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
 
 @Database(entities = [FilmDetails::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)

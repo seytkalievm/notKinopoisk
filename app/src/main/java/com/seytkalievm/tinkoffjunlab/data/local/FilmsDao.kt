@@ -1,4 +1,4 @@
-package com.seytkalievm.tinkoffjunlab.data.datasource
+package com.seytkalievm.tinkoffjunlab.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

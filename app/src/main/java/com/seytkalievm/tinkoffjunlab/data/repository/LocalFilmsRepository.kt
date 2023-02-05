@@ -1,6 +1,6 @@
 package com.seytkalievm.tinkoffjunlab.data.repository
 
-import com.seytkalievm.tinkoffjunlab.data.datasource.FilmsDao
+import com.seytkalievm.tinkoffjunlab.data.local.FilmsDao
 import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
 import com.seytkalievm.tinkoffjunlab.data.model.FilmPreview
 import kotlinx.coroutines.flow.Flow

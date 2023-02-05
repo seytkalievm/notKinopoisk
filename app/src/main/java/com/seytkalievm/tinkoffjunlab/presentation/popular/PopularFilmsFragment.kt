@@ -1,18 +1,29 @@
 package com.seytkalievm.tinkoffjunlab.presentation.popular
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.paging.flatMap
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.seytkalievm.tinkoffjunlab.R
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentPopularFilmsBinding
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewAdapter
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewItemDiffCalculator
+import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+private const val TAG = "PopularFilmsFragment"
 @AndroidEntryPoint
 class PopularFilmsFragment : Fragment() {
 
@@ -32,11 +43,28 @@ class PopularFilmsFragment : Fragment() {
         binding.filmsRv.layoutManager = LinearLayoutManager(requireContext())
         val adapter = FilmPreviewAdapter(
             FilmPreviewItemDiffCalculator(),
-            { showDetails(it) }, {addToFavourites(it)})
-        binding.filmsRv.adapter = adapter
+            { showDetails(it) }, {addToFavourites(it)}
+        )
 
-        viewModel.films.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        binding.filmsRv.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = FilmPreviewLoadStateAdapter{adapter.retry()},
+            footer = FilmPreviewLoadStateAdapter{adapter.retry()}
+        )
+        binding.button2.setOnClickListener {
+            adapter.retry()
+        }
+
+        viewModel.pagedFilms.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            adapter.loadStateFlow.collectLatest { loadState ->
+                binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
+                binding.internetConnectionError.isVisible = loadState.refresh is LoadState.Error
+                binding.filmsRv.isVisible = loadState.refresh !is LoadState.Error &&
+                        loadState.refresh !is LoadState.Loading
+            }
         }
     }
 

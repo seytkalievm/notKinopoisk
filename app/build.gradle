@@ -70,6 +70,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+
 
 
     // Retrofit
@@ -85,6 +87,13 @@ dependencies {
     // Ok http
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
 
+    // Shimmer effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    // Paging library v3
+    implementation "androidx.paging:paging-runtime:3.1.1"
+
+    // pull to refresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 }

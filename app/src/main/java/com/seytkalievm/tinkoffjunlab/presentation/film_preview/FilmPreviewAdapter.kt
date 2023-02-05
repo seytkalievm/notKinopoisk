@@ -3,7 +3,7 @@ package com.seytkalievm.tinkoffjunlab.presentation.film_preview
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import com.seytkalievm.tinkoffjunlab.data.model.FilmPreview
 import com.seytkalievm.tinkoffjunlab.databinding.FilmPreviewBinding
 
@@ -12,14 +12,15 @@ class FilmPreviewAdapter constructor(
     filmPreviewItemDiffCalculator: FilmPreviewItemDiffCalculator,
     private val onClickListener: (Int) -> Unit,
     private val onLongClickListener: (Int) -> Unit,
-    )
-    : ListAdapter<FilmPreview, FilmPreviewViewHolder>(filmPreviewItemDiffCalculator) {
+    ) : PagingDataAdapter<FilmPreview, FilmPreviewViewHolder>(filmPreviewItemDiffCalculator) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmPreviewViewHolder {
-        return FilmPreviewViewHolder(FilmPreviewBinding.inflate(LayoutInflater.from(parent.context)))
+        val binding =
+            FilmPreviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FilmPreviewViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: FilmPreviewViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = getItem(position) ?: return
         holder.bind(item)
         holder.itemView.setOnClickListener{onClickListener(item.filmId)}
         holder.itemView.setOnLongClickListener{
