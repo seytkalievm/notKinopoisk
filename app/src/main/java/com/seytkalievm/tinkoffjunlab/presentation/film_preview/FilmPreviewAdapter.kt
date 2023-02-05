@@ -22,8 +22,8 @@ class FilmPreviewAdapter constructor(
     override fun onBindViewHolder(holder: FilmPreviewViewHolder, position: Int) {
         val item = getItem(position) ?: return
         holder.bind(item)
-        holder.itemView.setOnClickListener{onClickListener(item.filmId)}
-        holder.itemView.setOnLongClickListener{
+        holder.itemView.setOnClickListener { onClickListener(item.filmId) }
+        holder.itemView.setOnLongClickListener {
             Log.i(TAG, "onBindViewHolder: LongClick")
             Log.i(TAG, "onBindViewHolder: ${item.filmId}")
             onLongClickListener(item.filmId)

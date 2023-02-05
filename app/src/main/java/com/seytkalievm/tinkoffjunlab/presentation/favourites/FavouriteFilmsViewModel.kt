@@ -2,6 +2,7 @@ package com.seytkalievm.tinkoffjunlab.presentation.favourites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.seytkalievm.tinkoffjunlab.domain.useCase.GetFavouriteFilmsUseCase
 import com.seytkalievm.tinkoffjunlab.domain.useCase.RemoveFilmFromFavouritesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,7 @@ class FavouriteFilmsViewModel @Inject constructor(
     private val deleteFromFavouritesUseCase: RemoveFilmFromFavouritesUseCase
 ): ViewModel() {
 
-    val films = getFavouriteFilmsUseCase()
+    val films = getFavouriteFilmsUseCase.invoke().cachedIn(viewModelScope)
 
     fun deleteFromFavourites(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {

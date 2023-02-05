@@ -36,7 +36,7 @@ class FavouriteFilmsFragment : Fragment() {
         binding.fragmentFavouriteFilmsFilmsRv.layoutManager = LinearLayoutManager(requireContext())
         binding.fragmentFavouriteFilmsFilmsRv.adapter = adapter
         viewModel.films.observe(viewLifecycleOwner) {
-            //adapter.submitList(it)
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
 

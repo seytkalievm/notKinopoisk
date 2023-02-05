@@ -1,10 +1,10 @@
 package com.seytkalievm.tinkoffjunlab.data.local
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
-import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -17,7 +17,7 @@ interface FilmsDao {
     suspend fun deleteFilm(id: Int)
 
     @Query("SELECT * FROM favourite_films")
-    fun getAllFilms(): Flow<List<FilmDetails>>
+    fun getAllFilms(): PagingSource<Int, FilmDetails>
 
     @Query("SELECT * FROM favourite_films WHERE id = :id")
     suspend fun getFilmDetails(id: Int): FilmDetails
