@@ -1,20 +1,14 @@
 package com.seytkalievm.tinkoffjunlab.presentation.popular
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.PagingData
-import androidx.paging.flatMap
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.seytkalievm.tinkoffjunlab.R
 import com.seytkalievm.tinkoffjunlab.databinding.FragmentPopularFilmsBinding
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewAdapter
 import com.seytkalievm.tinkoffjunlab.presentation.film_preview.FilmPreviewItemDiffCalculator
@@ -23,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-private const val TAG = "PopularFilmsFragment"
+
 @AndroidEntryPoint
 class PopularFilmsFragment : Fragment() {
 
@@ -50,7 +44,7 @@ class PopularFilmsFragment : Fragment() {
             header = FilmPreviewLoadStateAdapter{adapter.retry()},
             footer = FilmPreviewLoadStateAdapter{adapter.retry()}
         )
-        binding.button2.setOnClickListener {
+        binding.internetConnectionError.retryBtn.setOnClickListener{
             adapter.retry()
         }
 
@@ -61,7 +55,8 @@ class PopularFilmsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collectLatest { loadState ->
                 binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
-                binding.internetConnectionError.isVisible = loadState.refresh is LoadState.Error
+                binding.internetConnectionError.internetConnectionErrorLayout.isVisible =
+                    loadState.refresh is LoadState.Error
                 binding.filmsRv.isVisible = loadState.refresh !is LoadState.Error &&
                         loadState.refresh !is LoadState.Loading
             }

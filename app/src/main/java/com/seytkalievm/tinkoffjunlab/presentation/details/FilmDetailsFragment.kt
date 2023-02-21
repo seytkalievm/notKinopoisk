@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -40,15 +41,38 @@ class FilmDetailsFragment : Fragment() {
         }
 
         val shimmerLayout = binding.shimmerLayout
-        shimmerLayout.startShimmer()
 
         viewModel.getFilmDetails(id, local)
 
-        viewModel.filmDetails.observe(viewLifecycleOwner) {
-            shimmerLayout.stopShimmer()
-            shimmerLayout.visibility = View.GONE
-            bindFilmDetails(it)
-            binding.filmDetails.visibility = View.VISIBLE
+        binding.internetConnectionErrorLayout.retryBtn.setOnClickListener {
+            viewModel.getFilmDetails(id, local)
+        }
+
+        viewModel.state.observe(viewLifecycleOwner) {state ->
+            when (state) {
+                LoadState.LOADING -> {
+                    binding.shimmerLayout.isVisible = true
+                    shimmerLayout.startShimmer()
+                    binding.filmDetails.isVisible = false
+                    binding.internetConnectionErrorLayout
+                        .internetConnectionErrorLayout.isVisible = false
+                }
+                LoadState.SUCCESS -> {
+                    shimmerLayout.stopShimmer()
+                    shimmerLayout.isVisible = false
+                    bindFilmDetails(viewModel.filmDetails)
+                    binding.filmDetails.isVisible = true
+                    binding.internetConnectionErrorLayout
+                        .internetConnectionErrorLayout.isVisible = false
+                }
+                LoadState.ERROR -> {
+                    shimmerLayout.stopShimmer()
+                    shimmerLayout.isVisible = false
+                    binding.filmDetails.isVisible = false
+                    binding.internetConnectionErrorLayout
+                        .internetConnectionErrorLayout.isVisible = true
+                }
+            }
 
         }
 

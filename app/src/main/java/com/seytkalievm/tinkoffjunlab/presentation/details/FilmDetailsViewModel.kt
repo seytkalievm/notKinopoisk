@@ -8,7 +8,6 @@ import com.seytkalievm.tinkoffjunlab.data.model.FilmDetails
 import com.seytkalievm.tinkoffjunlab.domain.useCase.GetFilmDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,13 +16,21 @@ import javax.inject.Inject
 class FilmDetailsViewModel @Inject constructor(
     private val getFilmDetailsUseCase: GetFilmDetailsUseCase
 ): ViewModel() {
-    private val _filmDetails = MutableLiveData<FilmDetails>()
-    val filmDetails: LiveData<FilmDetails> get() = _filmDetails
+    private var _filmDetails: FilmDetails? = null
+    val filmDetails: FilmDetails get() = _filmDetails!!
+
+    private val _state = MutableLiveData(LoadState.LOADING)
+    val state: LiveData<LoadState> get() = _state
 
     fun getFilmDetails(id: Int, local: Boolean) {
+        _state.postValue(LoadState.LOADING)
         viewModelScope.launch (Dispatchers.IO) {
-            delay(500)
-            _filmDetails.postValue(getFilmDetailsUseCase.invoke(id, local))
+            try {
+                _filmDetails = getFilmDetailsUseCase.invoke(id, local)
+                _state.postValue(LoadState.SUCCESS)
+            } catch (e: Exception) {
+                _state.postValue(LoadState.ERROR)
+            }
         }
     }
 }
